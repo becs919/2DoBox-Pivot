@@ -42,13 +42,13 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	'use strict';
 
 	// var styles = require('./styles');
-	var newAlert = __webpack_require__(1);
-	newAlert();
+	// var newAlert = require('./alert');
+	// newAlert();
 
 	$(document).ready(function () {
 	  for (var i = 0; i < localStorage.length; i++) {
@@ -210,13 +210,6 @@
 	    disableSaveButton();
 	  }
 	});
-
-/***/ },
-/* 1 */
-/***/ function(module, exports) {
-
-	// module.exports = () => { alert('ITS A TRAP!!!!!!!!!') }
-	"use strict";
 
 /***/ }
 /******/ ]);
