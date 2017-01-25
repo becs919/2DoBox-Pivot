@@ -90,7 +90,7 @@ div {
   font: 700 25px 'Roboto Slab', serif;
 }
 
-.idea-body {
+.idea-task {
   color: #939598;
   font: 400 20px 'Open Sans', sans-serif;
 }
@@ -187,4 +187,5 @@ p {
   .save-button {
     width: 83%;
   }
+
 };*/
