@@ -116,7 +116,7 @@ p {
 }
 
 
-/*Buttons in bottom container*/
+/**Buttons in bottom container*/
 .buttons {
   display: inline-flex;
   border: none;
@@ -175,4 +175,4 @@ p {
   .save-button {
     width: 83%;
   }
-};
+};*/
