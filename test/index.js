@@ -66,10 +66,13 @@ test.it('should append multiple todos and delete one from the dom the dom should
   driver.findElements({className: 'input-text'}).then((li) =>{
     assert.equal(li.length, 2);
   })
-
+  driver.findElement({className: 'delete-button'}).click();
+  
+  driver.findElements({className: 'input-text'}).then((li) =>{
+    assert.equal(li.length, 1);
 })
-});
-
+})
+})
 
 
 
