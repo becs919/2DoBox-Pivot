@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>ToDo Box-Pivot</title>
+    <title>ToDo Box</title>
     <link type="text/css" rel="stylesheet" href="./lib/reset.css">
     <link type="text/css" rel="stylesheet" href="./lib/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:700" rel="stylesheet">
@@ -10,12 +10,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <container class="main-container">
+    <form class="main-container">
       <h1 class="logo-name">2Do<span>Box</span></h1>
-      <textarea class="title-input field" placeholder="Title"></textarea>
-      <textarea class="task-input field" placeholder="Task"></textarea>
-      <button role="save-button"class="save-button" disabled>save</button>
-    </container>
+      <input role="input field for title" class="title-input field" placeholder="Title"></input>
+      <input role="input field for task"class="task-input field" placeholder="Task"></input>
+      <button tabindex="0" role="save-button"class="save-button" disabled>save</button>
+    </form>
     <container class="bottom-container">
       <input class="search-field" placeholder="Search">
       <div>
