@@ -30,7 +30,6 @@ test.it('should allow me to add a title and a description', ()=>{
 
  task.sendKeys('this is a task').then(()=> { return task.getAttribute('value')}).then((value)=>{
    assert.equal(value, 'this is a task');
-   // driver.quit()
  });
 });
 
@@ -44,10 +43,10 @@ task.sendKeys('this is a task');
 button.click();
 
 const todo = driver.findElement({className: 'input-text'});
+
 todo.getText().then((idea) =>{
   assert.equal(idea,'this is a title\nthis is a task')
 });
-
 });
 
 test.it('should append multiple todos and delete one from the dom the dom should know when the todo is deleted', ()=>{
@@ -66,12 +65,60 @@ test.it('should append multiple todos and delete one from the dom the dom should
   driver.findElements({className: 'input-text'}).then((li) =>{
     assert.equal(li.length, 2);
   })
+
   driver.findElement({className: 'delete-button'}).click();
-  
+
   driver.findElements({className: 'input-text'}).then((li) =>{
     assert.equal(li.length, 1);
+  })
 })
+
+test.it('importance should increase when up button is clicked', ()=>{
+  const title = driver.findElement({className: 'title-input' });
+  const task = driver.findElement({className: 'task-input' });
+  const button = driver.findElement({className: 'save-button'});
+
+  title.sendKeys('this is a title');
+  task.sendKeys('this is a task');
+  button.click();
+
+  const importance = driver.findElement({className: 'importance'})
+
+
+  importance.getText().then((importance) =>{
+      assert.equal(importance, 'normal');
+  })
+
+  driver.findElement({className: 'up-vote'}).click();
+
+  importance.getText().then((importance) =>{
+      assert.equal(importance, 'high');
+  })
 })
+
+test.it('importance should decrease when down button is clicked', ()=>{
+  const title = driver.findElement({className: 'title-input' });
+  const task = driver.findElement({className: 'task-input' });
+  const button = driver.findElement({className: 'save-button'});
+
+  title.sendKeys('this is a title');
+  task.sendKeys('this is a task');
+  button.click();
+
+  const importance = driver.findElement({className: 'importance'})
+
+
+  importance.getText().then((importance) =>{
+      assert.equal(importance, 'normal');
+  })
+
+  driver.findElement({className: 'down-vote'}).click();
+
+  importance.getText().then((importance) =>{
+      assert.equal(importance, 'low');
+  })
+})
+
 })
 
 
