@@ -5,33 +5,132 @@ const test = require('selenium-webdriver/testing');
 
 
 describe('testing ideabox', function () {
-  let driver
+ let driver
 
-  test.beforeEach(()=>{
-  this.timeout(100000000)
-  driver = new webdriver.Builder()
-                        .forBrowser('chrome')
-                        .build();
-  driver.get('http://localhost:8080');
+ test.beforeEach(()=>{
+ this.timeout(100000000)
+ driver = new webdriver.Builder()
+                       .forBrowser('chrome')
+                       .build();
+ driver.get('http://localhost:8080');
 })
 
 test.afterEach(()=>{
-  driver.quit()
+ driver.quit()
 });
 
 test.it('should allow me to add a title and a description', ()=>{
 
-  const title       = driver.findElement({ className: 'title-input' });
-  // const description = driver.findElement({name: 'task-input' });
+ const title = driver.findElement({className: 'title-input' });
+ const task = driver.findElement({className: 'task-input' });
 
-  title.sendKeys('this is a title').then(()=> { return title.getAttribute('value')}).then((value)=>{
-    assert.equal(value, 'this is a title');
-  });
+ title.sendKeys('this is a title').then(()=> { return title.getAttribute('value')}).then((value)=>{
+   assert.equal(value, 'this is a title');
+ });
 
-
-  // description.sendKeys('this is a description').then(()=> { return description.getAttribute('value')}).then((value)=>{
-  //   assert.equal(value, 'this is a description');
-  //   // driver.quit()
-  // });
+ task.sendKeys('this is a task').then(()=> { return task.getAttribute('value')}).then((value)=>{
+   assert.equal(value, 'this is a task');
+   // driver.quit()
+ });
 });
+
+test.it('should append todo to the dom', ()=>{
+  const title = driver.findElement({className: 'title-input' });
+  const task = driver.findElement({className: 'task-input' });
+  const button = driver.findElement({className: 'save-button'});
+
+title.sendKeys('this is a title');
+task.sendKeys('this is a task');
+button.click();
+
+const todo = driver.findElement({className: 'input-text'});
+todo.getText().then((idea) =>{
+  assert.equal(idea,'this is a title\nthis is a task')
+
+
 });
+
+});
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const assert = require('chai').assert
+// const webdriver = require('selenium-webdriver');
+// const test = require('selenium-webdriver/testing');
+//
+//
+//
+// describe('testing ideabox', function () {
+//   let driver
+//
+//   test.beforeEach(()=>{
+//   this.timeout(100000000)
+//   driver = new webdriver.Builder()
+//                         .forBrowser('chrome')
+//                         .build();
+//   driver.get('http://localhost:8080');
+// })
+//
+// test.afterEach(()=>{
+//   driver.quit()
+// });
+//
+// test.it('should allow me to add a title and a description', ()=>{
+//
+//   const title       = driver.findElement({ className: 'title-input' });
+//   // const description = driver.findElement({name: 'task-input' });
+//
+//   title.sendKeys('this is a title').then(()=> { return title.getAttribute('value')}).then((value)=>{
+//     assert.equal(value, 'this is a title');
+//   });
+//
+//
+//   // description.sendKeys('this is a description').then(()=> { return description.getAttribute('value')}).then((value)=>{
+//   //   assert.equal(value, 'this is a description');
+//   //   // driver.quit()
+//   // });
+// });
+// });
