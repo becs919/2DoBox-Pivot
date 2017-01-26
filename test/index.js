@@ -4,13 +4,6 @@ const test = require('selenium-webdriver/testing');
 
 
 
-describe('our test bundle', function () {
-  it('should work', function () {
-    assert(true)
-    })
-  })
-
-
 describe('testing ideabox', function () {
   let driver
 
@@ -28,7 +21,7 @@ test.afterEach(()=>{
 
 test.it('should allow me to add a title and a description', ()=>{
 
-  const title       = driver.findElement({ name: 'title-input' });
+  const title       = driver.findElement({ className: 'title-input' });
   // const description = driver.findElement({name: 'task-input' });
 
   title.sendKeys('this is a title').then(()=> { return title.getAttribute('value')}).then((value)=>{

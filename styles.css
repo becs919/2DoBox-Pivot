@@ -131,7 +131,8 @@ p {
 }*/
 
 .delete-button {
-  margin-right: 10px;
+  float: right;
+  margin-top: 15px;
   background: url(../images/delete.svg) no-repeat;
 }
 
