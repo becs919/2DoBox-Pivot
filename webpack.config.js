@@ -20,5 +20,11 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.js', '.json', '.scss', '.css']
-  }
+  },
+  node: {
+ module: "empty",
+ fs: "empty",
+ net: "empty",
+ "child_process": "empty"
+}
 }
