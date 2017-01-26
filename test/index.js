@@ -46,12 +46,28 @@ button.click();
 const todo = driver.findElement({className: 'input-text'});
 todo.getText().then((idea) =>{
   assert.equal(idea,'this is a title\nthis is a task')
-
-
 });
 
 });
 
+test.it('should append multiple todos and delete one from the dom the dom should know when the todo is deleted', ()=>{
+  const title = driver.findElement({className: 'title-input' });
+  const task = driver.findElement({className: 'task-input' });
+  const button = driver.findElement({className: 'save-button'});
+
+  title.sendKeys('this is a title');
+  task.sendKeys('this is a task');
+  button.click();
+
+  title.sendKeys('this is a title');
+  task.sendKeys('this is a task');
+  button.click();
+
+  driver.findElements({className: 'input-text'}).then((li) =>{
+    assert.equal(li.length, 2);
+  })
+
+})
 });
 
 
