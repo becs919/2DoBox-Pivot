@@ -80,17 +80,17 @@ div {
   width: 50%;
 }
 
-.idea-section {
+.todo-section {
   border-bottom: 2px solid #D1D3D4;
   padding: 10px;
 }
 
-.idea-title {
+.todo-title {
   color: #6D6E71;
   font: 700 25px 'Roboto Slab', serif;
 }
 
-.idea-task {
+.todo-task {
   color: #939598;
   font: 400 20px 'Open Sans', sans-serif;
 }
@@ -131,8 +131,8 @@ p {
 }*/
 
 .delete-button {
-  background: url(../images/delete.svg) no-repeat;
   margin-right: 10px;
+  background: url(../images/delete.svg) no-repeat;
 }
 
 .delete-button:hover {
