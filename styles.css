@@ -91,7 +91,7 @@ div {
 }
 
 .todo-task {
-  color: #939598;
+  color: #6D6E71;
   font: 400 20px 'Open Sans', sans-serif;
 }
 
@@ -159,14 +159,14 @@ p {
 
 .completed-task {
   border: none;
-  background-color: #00A79D;
+  background-color: #045E55;
   color: #FFF;
   font: 400 12px 'Open Sans', sans-serif;
   padding: 5px 10px;
 }
 
 .completed-task:hover {
-  background-color: #045E55;
+  background-color: #00A79D;
 }
 
 .strike-through {
