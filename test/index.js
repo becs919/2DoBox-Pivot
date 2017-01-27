@@ -1,22 +1,22 @@
-const assert = require('chai').assert
+const assert = require('chai').assert;
 const webdriver = require('selenium-webdriver');
 const test = require('selenium-webdriver/testing');
 
 
 
 describe('testing ideabox', function () {
- let driver
+ let driver;
 
  test.beforeEach(()=>{
- this.timeout(100000000)
+ this.timeout(100000000);
  driver = new webdriver.Builder()
                        .forBrowser('chrome')
                        .build();
  driver.get('http://localhost:8080');
-})
+});
 
 test.afterEach(()=>{
- driver.quit()
+ driver.quit();
 });
 
 test.it('should allow me to add a title and a description', ()=>{
@@ -24,7 +24,7 @@ test.it('should allow me to add a title and a description', ()=>{
  const title = driver.findElement({className: 'title-input' });
  const task = driver.findElement({className: 'task-input' });
 
- title.sendKeys('this is a title').then(()=> { return title.getAttribute('value')}).then((value)=>{
+ title.sendKeys('this is a title').then(()=> { return title.getAttribute('value');}).then((value)=>{
    assert.equal(value, 'this is a title');
  });
 
@@ -45,7 +45,7 @@ button.click();
 const todo = driver.findElement({className: 'input-text'});
 
 todo.getText().then((idea) =>{
-  assert.equal(idea,'this is a title\nthis is a task')
+  assert.equal(idea,'this is a title\nthis is a task');
 });
 });
 
@@ -64,14 +64,14 @@ test.it('should append multiple todos and delete one from the dom the dom should
 
   driver.findElements({className: 'input-text'}).then((li) =>{
     assert.equal(li.length, 2);
-  })
+  });
 
   driver.findElement({className: 'delete-button'}).click();
 
   driver.findElements({className: 'input-text'}).then((li) =>{
     assert.equal(li.length, 1);
-  })
-})
+  });
+});
 
 test.it('importance should increase when up button is clicked', ()=>{
   const title = driver.findElement({className: 'title-input' });
@@ -82,19 +82,19 @@ test.it('importance should increase when up button is clicked', ()=>{
   task.sendKeys('this is a task');
   button.click();
 
-  const importance = driver.findElement({className: 'importance'})
+  const importance = driver.findElement({className: 'importance'});
 
 
   importance.getText().then((importance) =>{
       assert.equal(importance, 'normal');
-  })
+  });
 
   driver.findElement({className: 'up-vote'}).click();
 
   importance.getText().then((importance) =>{
       assert.equal(importance, 'high');
-  })
-})
+  });
+});
 
 test.it('importance should decrease when down button is clicked', ()=>{
   const title = driver.findElement({className: 'title-input' });
@@ -105,21 +105,21 @@ test.it('importance should decrease when down button is clicked', ()=>{
   task.sendKeys('this is a task');
   button.click();
 
-  const importance = driver.findElement({className: 'importance'})
+  const importance = driver.findElement({className: 'importance'});
 
 
   importance.getText().then((importance) =>{
       assert.equal(importance, 'normal');
-  })
+  });
 
   driver.findElement({className: 'down-vote'}).click();
 
   importance.getText().then((importance) =>{
       assert.equal(importance, 'low');
-  })
-})
+  });
+});
 
-})
+});
 
 
 
