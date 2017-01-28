@@ -7,7 +7,6 @@
   background-color: #E5F3F2;
   width: 100%;
   height: 40%;
-
 }
 
 .logo-name {
@@ -39,12 +38,8 @@ input {
   margin-bottom: 20px;
   margin-top: 2px;
   font: 400 15px 'Open Sans', sans-serif;
-  color:#4E4E51 
+  color:#4E4E51
 }
-
-/*input:focus, textarea:focus {
-  outline: none;
-}*/
 
 .save-button {
   border: none;
@@ -55,10 +50,6 @@ input {
   color: #fff;
   font-size: 17px;
 }
-
-/*button:focus {
-  outline: #6D6E71;
-}*/
 
 .save-button:hover {
   background-color: #00A79D;
@@ -101,7 +92,6 @@ div {
 
 .all-quality-buttons{
   display: inherit;
-  /*border-bottom: 2px solid #D1D3D4;*/
   margin-bottom: 20px;
   width: 50%;
 }
@@ -125,10 +115,6 @@ li {
   margin-top: 20px;
 }
 
-/*li:focus {
-  outline: none;
-}*/
-
 p {
   display: inline-block;
   margin: 8px;
@@ -151,10 +137,6 @@ p {
   color: transparent;
   background-color: transparent;
 }
-
-/*.buttons:focus {
-  outline: none;
-}*/
 
 .delete-button {
   float: right;
