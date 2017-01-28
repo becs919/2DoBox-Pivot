@@ -16,10 +16,6 @@
   font: 700 40px 'Roboto Slab', serif;
 }
 
-textarea {
-  resize: none;
-}
-
 span {
   color: #6D6E71;
 }
@@ -34,14 +30,16 @@ input {
   font-size: 17px;
 }
 
-textarea {
-  border: 2px solid #D1D3D4;
-  margin: 7px 0;
-  padding: 5px;
-  width: 50%;
-  height: 25px;
-  color: #6D6E71;
-  font-size: 17px;
+.task-input{
+  margin-bottom: 2px;
+}
+
+.character-count {
+  padding: 0;
+  margin-bottom: 20px;
+  margin-top: 2px;
+  font: 400 15px 'Open Sans', sans-serif;
+  color:#4E4E51 
 }
 
 /*input:focus, textarea:focus {
@@ -50,7 +48,7 @@ textarea {
 
 .save-button {
   border: none;
-  margin-top: 7px;
+  margin-top: 0;
   width: 51%;
   height: 37px;
   background-color: #045E55;
