@@ -12,8 +12,10 @@
   <body>
     <form class="main-container">
       <h1 tabindex="0" class="logo-name">2Do<span>Box</span></h1>
-      <input aria-label="input field for title of todo" class="title-input field" placeholder="title"></input>
-      <input aria-label="input field for task" class="task-input field" placeholder="task"></input>
+      <input aria-label="input field for title of todo" class="title-input field" maxlength="120" placeholder="title"></input>
+      <!-- <p>characters: <span class="char-count"></span></p> -->
+      <input aria-label="input field for task" class="task-input field" maxlength="120" placeholder="task"></input>
+       <p class="character-count"><span class="char-count"></span> characters remaining</p>
       <button tabindex="0" aria-label="save" class="save-button" disabled>save</button>
     </form>
     <container class="bottom-container">
