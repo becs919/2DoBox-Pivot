@@ -73,10 +73,38 @@ textarea {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 3%;
+  /*margin-top: 3%;*/
 }
 
 div {
+  width: 50%;
+}
+
+.filter-todos {
+  color: #6D6E71;
+  font: 400 20px 'Open Sans', sans-serif;
+  margin: 15px 15px;
+}
+
+.quality-button{
+  border: none;
+  background-color: #045E55;
+  color: #FFF;
+  font: 400 12px 'Open Sans', sans-serif;
+  padding: 5px 10px;
+  margin: auto;
+  width: 85px;
+  margin-bottom: 10px;
+}
+
+.quality-button:hover {
+  background-color: #00A79D;
+}
+
+.all-quality-buttons{
+  display: inherit;
+  /*border-bottom: 2px solid #D1D3D4;*/
+  margin-bottom: 20px;
   width: 50%;
 }
 
@@ -116,7 +144,7 @@ p {
 }
 
 
-/**Buttons in bottom container*/
+/**Buttons in appended container*/
 .buttons {
   display: inline-flex;
   border: none;
@@ -172,6 +200,7 @@ p {
 .strike-through {
   text-decoration: line-through;
 }
+
 
 /*Media Queries*/
 @media screen and (max-width: 700px) {
