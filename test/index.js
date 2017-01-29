@@ -84,7 +84,6 @@ test.it('importance should increase when up button is clicked', ()=>{
 
   const importance = driver.findElement({className: 'importance'});
 
-
   importance.getText().then((importance) =>{
       assert.equal(importance, 'normal');
   });
@@ -106,7 +105,6 @@ test.it('importance should decrease when down button is clicked', ()=>{
   button.click();
 
   const importance = driver.findElement({className: 'importance'});
-
 
   importance.getText().then((importance) =>{
       assert.equal(importance, 'normal');
@@ -158,12 +156,92 @@ test.it('search field should filter matches and hide non-matches', () =>{
 
   search.sendKeys('dog');
 
-// NEED TO DO!!!!!!!!!!!
+  const todo = driver.findElement({className: 'todo-section'})
 
-  // driver.findElements({className: 'input-text'}).then((li) =>{
-  //   assert.equal(li.length, 1);
-  //   // HAVE TO FILTER OUT CSS DISPLAY: NONE!!!!!
-  // });
-})
+  todo.getAttribute('style').then((displayed)=>{
+    assert.equal(displayed, 'display: none;');
+  });
+});
+
+
+test.it('task should be marked completed when button is clicked', ()=>{
+  const title = driver.findElement({className: 'title-input' });
+  const task = driver.findElement({className: 'task-input' });
+  const button = driver.findElement({className: 'save-button'});
+
+  title.sendKeys('this is a title');
+  task.sendKeys('this is a task');
+  button.click();
+
+
+
+  driver.findElement({className: 'completed-task'}).click();
+
+  const completed = driver.findElement({className: 'todo-section'});
+
+  completed.getAttribute('class').then((complete) => {
+    assert.equal(complete, 'todo-section completed');
+  });
+});
+
+test.it('should hide completed tasks on reload.', ()=> {
+  const title = driver.findElement({className: 'title-input' });
+  const task = driver.findElement({className: 'task-input' });
+  const button = driver.findElement({className: 'save-button'});
+
+  title.sendKeys('this is a title');
+  task.sendKeys('this is a task');
+  button.click();
+
+  driver.findElement({className: 'completed-task'}).click();
+
+  const completed = driver.findElement({className: 'todo-section'});
+
+  completed.getAttribute('class').then((complete) => {
+    assert.equal(complete, 'todo-section completed');
+  });
+
+  driver.navigate().refresh();
+
+  const completedToDo = driver.findElement({className: 'todo-section completed'})
+
+  completedToDo.getAttribute('style').then((displayed)=>{
+    assert.equal(displayed, 'display: none;');
+  });
+});
+
+test.it('should show completed tasks when button is clicked', ()=> {
+  const title = driver.findElement({className: 'title-input' });
+  const task = driver.findElement({className: 'task-input' });
+  const button = driver.findElement({className: 'save-button'});
+
+  title.sendKeys('this is a title');
+  task.sendKeys('this is a task');
+  button.click();
+
+  driver.findElement({className: 'completed-task'}).click();
+
+  const completed = driver.findElement({className: 'todo-section'});
+
+  completed.getAttribute('class').then((complete) => {
+    assert.equal(complete, 'todo-section completed');
+  });
+
+  driver.navigate().refresh();
+
+  const completedToDo = driver.findElement({className: 'todo-section completed'})
+
+  completedToDo.getAttribute('style').then((displayed)=>{
+    assert.equal(displayed, 'display: none;');
+  });
+
+  const showCompleted = driver.findElement({className: 'show-complete'});
+  showCompleted.click();
+
+  completedToDo.getAttribute('style').then((display) => {
+      assert.equal(display, '');
+    });
+});
+
 
 });
