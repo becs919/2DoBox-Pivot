@@ -1,18 +1,18 @@
 /*Main top container*/
 .main-container {
+  align-items: center;
+  background-color: #E5F3F2;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 3% 0;
-  background-color: #E5F3F2;
-  width: 100%;
   height: 40%;
+  padding: 3% 0;
+  width: 100%;
 }
 
 .logo-name {
-  margin-bottom: 2%;
   color: #045E55;
   font: 700 40px 'Roboto Slab', serif;
+  margin-bottom: 2%;
 }
 
 span {
@@ -21,12 +21,12 @@ span {
 
 input {
   border: 2px solid #D1D3D4;
-  margin: 7px 0;
-  padding: 5px;
-  width: 50%;
-  height: 25px;
   color: #6D6E71;
   font-size: 17px;
+  margin: 7px 0;
+  padding: 5px;
+  height: 25px;
+  width: 50%;
 }
 
 .task-input{
@@ -34,21 +34,21 @@ input {
 }
 
 .character-count {
-  padding: 0;
+  color:#4E4E51
+  font: 400 15px 'Open Sans', sans-serif;
   margin-bottom: 20px;
   margin-top: 2px;
-  font: 400 15px 'Open Sans', sans-serif;
-  color:#4E4E51
+  padding: 0;
 }
 
 .save-button {
-  border: none;
-  margin-top: 0;
-  width: 51%;
-  height: 37px;
   background-color: #045E55;
+  border: none;
   color: #fff;
   font-size: 17px;
+  height: 37px;
+  margin-top: 0;
+  width: 51%;
 }
 
 .save-button:hover {
@@ -56,12 +56,12 @@ input {
 }
 
 .show-complete {
-  border: none;
   background-color: #045E55;
+  border: none;
   color: #FFF;
   font: 400 12px 'Open Sans', sans-serif;
-  padding: 5px 10px;
   margin-bottom: 20px;
+  padding: 5px 10px;
 }
 
 .show-complete:hover {
@@ -71,11 +71,11 @@ input {
 
 /*Bottom Container*/
 .bottom-container {
+  align-items: center;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
   /*margin-top: 3%;*/
 }
 
@@ -90,14 +90,14 @@ div {
 }
 
 .quality-button{
-  border: none;
   background-color: #045E55;
+  border: none;
   color: #FFF;
   font: 400 12px 'Open Sans', sans-serif;
-  padding: 5px 10px;
   margin: auto;
-  width: 85px;
   margin-bottom: 10px;
+  padding: 5px 10px;
+  width: 85px;
 }
 
 .quality-button:hover {
@@ -132,9 +132,9 @@ li {
 p {
   display: inline-block;
   margin: 8px;
-  padding: 10px 0;
   color: #6D6E71;
   font: 700 15px 'Roboto Slab', serif;
+  padding: 10px 0;
 }
 
 .importance {
@@ -145,17 +145,17 @@ p {
 /**Buttons in appended container*/
 .buttons {
   display: inline-flex;
-  border: none;
-  width: 30px;
-  height: 30px;
-  color: transparent;
   background-color: transparent;
+  border: none;
+  color: transparent;
+  height: 30px;
+  width: 30px;
 }
 
 .delete-button {
+  background: url(../images/delete.svg) no-repeat;
   float: right;
   margin-top: 15px;
-  background: url(../images/delete.svg) no-repeat;
 }
 
 .delete-button:hover {
@@ -171,8 +171,8 @@ p {
 }
 
 .down-vote {
-  margin: 0px 10px;
   background: url(../images/downvote.svg) no-repeat;
+  margin: 0px 10px;
 }
 
 .down-vote:hover {
@@ -180,8 +180,8 @@ p {
 }
 
 .completed-task {
-  border: none;
   background-color: #045E55;
+  border: none;
   color: #FFF;
   font: 400 12px 'Open Sans', sans-serif;
   padding: 5px 10px;
@@ -215,4 +215,4 @@ p {
     width: 83%;
   }
 
-};*/
+}
