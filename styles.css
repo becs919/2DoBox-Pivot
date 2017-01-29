@@ -154,7 +154,7 @@ p {
 .delete-button {
   background: url(../images/delete.svg) no-repeat;
   margin-top: 15px;
-  margin-left: 10px;
+  margin-left: 15px;
 }
 
 .delete-button:hover {
