@@ -119,6 +119,19 @@ test.it('importance should decrease when down button is clicked', ()=>{
   });
 });
 
+// test.it('mark as completed should turn that todo grey', () =>{
+//   const title = driver.findElement({className: 'title-input' });
+//   const task = driver.findElement({className: 'task-input' });
+//   const button = driver.findElement({className: 'save-button'});
+//   const completed = driver.findElement({className: 'completed-task'});
+//
+//   title.sendKeys('puppy');
+//   task.sendKeys('this is a puppy');
+//   button.click();
+//   completed.click();
+//
+//
+// })
 
 test.it('search field should filter matches and hide non-matches', () =>{
   const title = driver.findElement({className: 'title-input' });
