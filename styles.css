@@ -76,7 +76,6 @@ input {
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
-  /*margin-top: 3%;*/
 }
 
 div {
@@ -108,7 +107,6 @@ div {
 .all-quality-buttons{
   display: inherit;
   margin-bottom: 20px;
-  width: 50%;
 }
 
 .todo-section {
@@ -155,8 +153,8 @@ p {
 
 .delete-button {
   background: url(../images/delete.svg) no-repeat;
-  float: right;
   margin-top: 15px;
+  margin-left: 10px;
 }
 
 .delete-button:hover {
@@ -186,6 +184,7 @@ p {
   color: #FFF;
   font: 400 12px 'Open Sans', sans-serif;
   padding: 5px 10px;
+  margin-left: 10px;
 }
 
 .completed-task:hover {
