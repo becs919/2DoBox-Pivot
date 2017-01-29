@@ -55,6 +55,20 @@ input {
   background-color: #00A79D;
 }
 
+.show-complete {
+  border: none;
+  background-color: #045E55;
+  color: #FFF;
+  font: 400 12px 'Open Sans', sans-serif;
+  padding: 5px 10px;
+  margin-bottom: 20px;
+}
+
+.show-complete:hover {
+  background-color: #00A79D;
+
+}
+
 /*Bottom Container*/
 .bottom-container {
   display: flex;
@@ -177,8 +191,8 @@ p {
   background-color: #00A79D;
 }
 
-.strike-through {
-  text-decoration: line-through;
+.completed {
+  background-color: #e3e4e5;
 }
 
 
