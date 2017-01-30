@@ -28,7 +28,7 @@ test.it('should allow me to add a title and a description', ()=>{
    assert.equal(value, 'this is a title');
  });
 
- task.sendKeys('this is a task').then(()=> { return task.getAttribute('value')}).then((value)=>{
+ task.sendKeys('this is a task').then(()=> { return task.getAttribute('value');}).then((value)=>{
    assert.equal(value, 'this is a task');
  });
 });
@@ -138,11 +138,11 @@ test.it('search field should filter matches and hide non-matches', () =>{
     assert.equal(li.length, 3);
   });
 
-  const search = driver.findElement({className: 'search-field'})
+  const search = driver.findElement({className: 'search-field'});
 
   search.sendKeys('dog');
 
-  const todo = driver.findElement({className: 'todo-section'})
+  const todo = driver.findElement({className: 'todo-section'});
 
   todo.getAttribute('style').then((displayed)=>{
     assert.equal(displayed, '');
