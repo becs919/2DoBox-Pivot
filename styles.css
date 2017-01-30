@@ -69,6 +69,20 @@ input {
 
 }
 
+.show-more {
+  background-color: #045E55;
+  border: none;
+  color: #FFF;
+  font: 400 12px 'Open Sans', sans-serif;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding: 5px 10px;
+}
+
+.show-more:hover{
+  background-color: #00A79D;
+}
+
 /*Bottom Container*/
 .bottom-container {
   align-items: center;

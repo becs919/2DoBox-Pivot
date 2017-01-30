@@ -8,7 +8,7 @@ describe('testing ideabox', function () {
  let driver;
 
  test.beforeEach(()=>{
- this.timeout(100000);
+ this.timeout(10000000);
  driver = new webdriver.Builder()
                        .forBrowser('chrome')
                        .build();
@@ -116,20 +116,6 @@ test.it('importance should decrease when down button is clicked', ()=>{
       assert.equal(importance, 'low');
   });
 });
-
-// test.it('mark as completed should turn that todo grey', () =>{
-//   const title = driver.findElement({className: 'title-input' });
-//   const task = driver.findElement({className: 'task-input' });
-//   const button = driver.findElement({className: 'save-button'});
-//   const completed = driver.findElement({className: 'completed-task'});
-//
-//   title.sendKeys('puppy');
-//   task.sendKeys('this is a puppy');
-//   button.click();
-//   completed.click();
-//
-//
-// })
 
 test.it('search field should filter matches and hide non-matches', () =>{
   const title = driver.findElement({className: 'title-input' });
@@ -242,6 +228,28 @@ test.it('should show completed tasks when button is clicked', ()=> {
       assert.equal(display, '');
     });
 });
+
+
+//working on test to filter by importance ----doesn't work
+// test.it('should filter by importance', ()=> {
+//   const title = driver.findElement({className: 'title-input' });
+//   const task = driver.findElement({className: 'task-input' });
+//   const svbutton = driver.findElement({className: 'save-button'});
+//   const lowbutton = driver.findElement({className: 'low' });
+//
+//   title.sendKeys('this is a title');
+//   task.sendKeys('this is a task');
+//   svbutton.click();
+//   lowbutton.click();
+//
+//   driver.navigate().refresh();
+//
+//   const low = driver.findElement({className:'importance'});
+//
+//   low.getText().then((low) =>{
+//     assert.equal(low, 'low');
+//   })
+// })
 
 
 });
