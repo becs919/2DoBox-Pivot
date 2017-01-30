@@ -42,62 +42,67 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	__webpack_require__(1);
+	__webpack_require__(2);
 	var $title = $('.title-input');
 	var $task = $('.task-input');
 	var $saveButton = $('.save-button');
 
-	$(document).ready(function () {
-	  for (var i = 0; i < localStorage.length; i++) {
-	    append(JSON.parse(localStorage.getItem(localStorage.key(i))));
-	  }
-	});
-	//for let is low key dangerous. Can cause problems.
+	var valueArray = ['none', 'low', 'normal', 'high', 'critical'];
 
+	$(document).ready(function () {
+	  var completedArray = Object.keys(localStorage).filter(completeFilter).sort();
+	  var sortedArray = Object.keys(localStorage).sort().filter(incompleteFilter).slice(-10);
+
+	  sortedArray.concat(completedArray).forEach(function (key) {
+	    append(JSON.parse(localStorage[key]));
+	  });
+	  var completedTask = $('.bottom-container').find('.completed');
+	  completedTask.hide();
+	});
 
 	// EVENT LISTENERS
-	$saveButton.on('click', function () {
+	$saveButton.on('click', function (e) {
+	  e.preventDefault();
 	  grabToDo();
 	  clearFields();
 	  disableSaveButton();
 	});
 
-	$('.bottom-container').on('click', '.delete-button', function () {
-	  $(this).closest('.todo-section').remove();
-	  var idKey = $(this).closest('.todo-section').attr('id');
-	  localStorage.removeItem(idKey);
-	});
-
-	$('.bottom-container').on('click', '.up-vote, .down-vote', function () {
-	  var getToDo = $(this).closest('.todo-section');
+	$('.bottom-container').on('click', '.up-vote, .down-vote', function (e) {
+	  var getToDo = $(e.currentTarget).closest('.todo-section');
 	  var id = getToDo.prop('id');
 	  var importance = getToDo.find('.importance').text();
-	  var upVoteOrDownVote = $(this).prop('class');
+	  var upVoteOrDownVote = $(e.currentTarget).prop('class');
 	  var newImportance = sortButtons(upVoteOrDownVote, importance);
 	  getToDo.find('.importance').text(newImportance);
 	  var storedObj = JSON.parse(localStorage.getItem(id));
+	  console.log(newImportance);
 	  storedObj.importance = newImportance;
 	  storeItem(storedObj);
 	});
 
-	$('.bottom-container').on('blur', '.todo-title, .todo-task', function () {
-	  var id = $(this).closest('.todo-section').prop('id');
+	$('.bottom-container').on('click', '.completed-task', function (e) {
+	  $(e.currentTarget).closest('.todo-section').toggleClass('completed');
+	  var id = $(e.currentTarget).closest('.todo-section').prop('id');
 	  var todo = JSON.parse(localStorage.getItem(id));
-	  todo.title = $(this).closest('.todo-section').find('.todo-title').text();
-	  todo.task = $(this).closest('.todo-section').find('.todo-task').text();
-	  localStorage.setItem(id, JSON.stringify(todo));
+	  var currentClass = $(e.currentTarget).closest('.todo-section').prop('class');
+	  todo.complete = !todo.complete;
+	  storeItem(todo);
 	});
 
-	$('.search-field').on('keyup', function () {
-	  var searchTerm = $(this).val().toLowerCase();
-	  $('.input-text').each(function (index, theObject) {
-	    var text = $(theObject).text().toLowerCase();
-	    var match = !!text.match(searchTerm);
-	    $(this).parent().toggle(match);
-	  });
+	$('.bottom-container').on('blur', '.todo-title, .todo-task', function (e) {
+	  var id = $(e.currentTarget).closest('.todo-section').prop('id');
+	  var todo = JSON.parse(localStorage.getItem(id));
+	  todo.title = $(e.currentTarget).closest('.todo-section').find('.todo-title').text();
+	  todo.task = $(e.currentTarget).closest('.todo-section').find('.todo-task').text();
+	  storeItem(todo);
 	});
 
 	$('.title-input, .task-input').on('keyup', function () {
@@ -110,13 +115,97 @@
 	  }
 	});
 
+	$('.task-input').on('input', function (e) {
+	  var max = 120;
+	  var length = $(e.currentTarget).val().length;
+	  $('.char-count').text(max - length);
+	});
+
+	// QUALITY FILTER BUTTONS - NEED REFACTORED!!!!!
+
+	// function addImportanceClick (importance) {
+	//   $('.' + importance).on('click', function() {
+	//     $('.todo-section').find('.importance').each(function(index, quality){
+	//       let text = $(quality).text();
+	//       if(text === importance){
+	//       } else {
+	//         $(this).closest('.todo-section').toggle();
+	//         let completedTask = $('.bottom-container').find('.completed');
+	//         completedTask.hide();
+	//       }
+	//     });
+	//   });
+	// }
+	// importanceArray.forEach((importance) => {
+	//   addImportanceClick(importance);
+	// })
+
+	$('.none').on('click', function () {
+	  $('.todo-section').find('.importance').each(function (index, quality) {
+	    var text = $(quality).text();
+	    if (text === 'none') {} else {
+	      $(this).closest('.todo-section').toggle();
+	      var completedTask = $('.bottom-container').find('.completed');
+	      completedTask.hide();
+	    }
+	  });
+	});
+
+	$('.low').on('click', function () {
+	  $('.todo-section').find('.importance').each(function (index, quality) {
+	    var text = $(quality).text();
+	    if (text === 'low') {} else {
+	      $(this).closest('.todo-section').toggle();
+	      var completedTask = $('.bottom-container').find('.completed');
+	      completedTask.hide();
+	    }
+	  });
+	});
+
+	$('.normal').on('click', function () {
+	  $('.todo-section').find('.importance').each(function (index, quality) {
+	    var text = $(quality).text();
+	    if (text === 'normal') {} else {
+	      $(this).closest('.todo-section').toggle();
+	      var completedTask = $('.bottom-container').find('.completed');
+	      completedTask.hide();
+	    }
+	  });
+	});
+
+	$('.high').on('click', function () {
+	  $('.todo-section').find('.importance').each(function (index, quality) {
+	    var text = $(quality).text();
+	    if (text === 'high') {} else {
+	      $(this).closest('.todo-section').toggle();
+	      var completedTask = $('.bottom-container').find('.completed');
+	      completedTask.hide();
+	    }
+	  });
+	});
+
+	$('.critical').on('click', function () {
+	  $('.todo-section').find('.importance').each(function (index, quality) {
+	    var text = $(quality).text();
+	    if (text === 'critical') {} else {
+	      $(this).closest('.todo-section').toggle();
+	      var completedTask = $('.bottom-container').find('.completed');
+	      completedTask.hide();
+	    }
+	  });
+	});
+
 	// GLOBAL FUNCTIONS
-	function ToDo(title, task) {
+
+	var ToDo = function ToDo(title, task) {
+	  _classCallCheck(this, ToDo);
+
 	  this.title = title;
 	  this.task = task;
 	  this.id = Date.now();
 	  this.importance = 'normal';
-	}
+	  this.complete = false;
+	};
 
 	function grabToDo() {
 	  var title = $title.val();
@@ -127,51 +216,47 @@
 	}
 
 	function append(todo) {
-	  $('ul').prepend('<section id=' + todo.id + ' class="todo-section">\n      <div class="input-text">\n      <li class=\'todo-title\' contenteditable>' + todo.title + '</li>\n      <li class=\'todo-task\' contenteditable>' + todo.task + '</li>\n      </div>\n      <button class=\'up-vote buttons\'>up</button>\n      <button class=\'down-vote buttons\'>down</button>\n      <button class=\'completed-task\'>Completed Task</button>\n      <p>importance: <span class="importance">' + todo.importance + '</span></p>\n      <button class=\'delete-button buttons\'>delete</button>\n      </section>');
+	  $('.appended-card').prepend('<section id=' + todo.id + ' class="todo-section">\n      <ul class="input-text">\n      <li class=\'todo-title\' contenteditable>' + todo.title + '</li>\n      <li class=\'todo-task\' contenteditable>' + todo.task + '</li>\n      </ul>\n      <button class=\'up-vote buttons\'>up</button>\n      <button class=\'down-vote buttons\'>down</button>\n      <p tabindex="0">importance: <span class="importance">' + todo.importance + '</span></p>\n      <button aria-label="mark as completed task" class=\'completed-task\'>completed task</button>\n      <button class=\'delete-button buttons\'>delete</button>\n    </section>');
+	  if (todo.complete) {
+	    $('#' + todo.id).toggleClass('completed');
+	  }
 	};
 
 	function clearFields() {
 	  $title.val('');
 	  $task.val('');
-	}
+	};
 
 	function disableSaveButton() {
 	  $saveButton.prop("disabled", true);
-	}
+	};
 
 	function enableSaveButton() {
 	  $saveButton.prop("disabled", false);
-	}
+	};
+
+	function storeItem(todo) {
+	  localStorage.setItem(todo.id, JSON.stringify(todo));
+	};
 
 	function upVote(importance) {
-	  switch (importance) {
-	    case 'none':
-	      return 'low';
-	    case 'low':
-	      return 'normal';npm;
-	    case 'normal':
-	      return 'high';
-	    case 'high':
-	      return 'critical';
-	    default:
-	      return 'critical';
+	  var index = valueArray.indexOf(importance);
+	  if (index < valueArray.length - 1) {
+	    index++;
+	    return valueArray[index];
 	  }
-	}
+	  return valueArray[index];
+	};
 
 	function downVote(importance) {
-	  switch (importance) {
-	    case 'critical':
-	      return 'high';
-	    case 'high':
-	      return 'normal';
-	    case 'normal':
-	      return 'low';
-	    case 'low':
-	      return 'none';
-	    default:
-	      return 'none';
+	  var index = valueArray.indexOf(importance);
+
+	  if (index > 0) {
+	    index--;
+	    return valueArray[index];
 	  }
-	}
+	  return valueArray[index];
+	};
 
 	function sortButtons(upVoteOrDownVote, importance) {
 	  if (upVoteOrDownVote === 'up-vote buttons') {
@@ -179,20 +264,56 @@
 	  } else {
 	    return downVote(importance);
 	  }
-	}
+	};
 
-	function storeItem(todo) {
-	  localStorage.setItem(todo.id, JSON.stringify(todo));
-	}
+	function incompleteFilter(key) {
+	  return !JSON.parse(localStorage[key]).complete;
+	};
 
-	// COMPLETED TASK BUTTON
-	$('.bottom-container').on('click', '.completed-task', function () {
-	  $(this).closest('.todo-section').find('.input-text').toggleClass('strike-through');
-	  console.log('hey');
+	function completeFilter(key) {
+	  return JSON.parse(localStorage[key]).complete;
+	};
+
+/***/ },
+/* 1 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var valueArray = ['none', 'low', 'normal', 'high', 'critical'];
+
+	$('.bottom-container').on('click', '.delete-button', function (e) {
+	  $(e.currentTarget).closest('.todo-section').remove();
+	  var idKey = $(e.currentTarget).closest('.todo-section').attr('id');
+	  localStorage.removeItem(idKey);
 	});
 
-	// On reloading the page the page the completed TODOs should be exempted from the list.
-	// When the user clicks the show completed TODOs The completed TODOs should be loaded back onto the top of the todo list.
+	$('.show-complete').on('click', function (e) {
+	  e.preventDefault();
+	  var completedTask = $('.bottom-container').find('.completed');
+	  if ($('.show-complete').text() === 'show completed todos') {
+	    completedTask.toggle();
+	    $('.show-complete').text('hide completed todos');
+	  } else {
+	    completedTask.toggle();
+	    $('.show-complete').text('show completed todos');
+	  }
+	});
+
+/***/ },
+/* 2 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	$('.search-field').on('keyup', function () {
+	  var searchTerm = $(this).val().toLowerCase();
+	  $('.input-text').each(function (index, theObject) {
+	    var text = $(theObject).text().toLowerCase();
+	    var match = !!text.match(searchTerm);
+	    $(this).parent().toggle(match);
+	  });
+	});
 
 /***/ }
 /******/ ]);
