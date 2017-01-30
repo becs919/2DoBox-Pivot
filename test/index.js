@@ -145,7 +145,7 @@ test.it('search field should filter matches and hide non-matches', () =>{
   const todo = driver.findElement({className: 'todo-section'})
 
   todo.getAttribute('style').then((displayed)=>{
-    assert.equal(displayed, 'display: none;');
+    assert.equal(displayed, '');
   });
 });
 
