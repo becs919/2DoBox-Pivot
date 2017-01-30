@@ -55,6 +55,10 @@ input {
   background-color: #00A79D;
 }
 
+.save-button:disabled {
+  opacity: 0.5;
+}
+
 .show-complete {
   background-color: #045E55;
   border: none;
