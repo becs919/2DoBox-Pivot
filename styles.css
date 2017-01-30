@@ -33,7 +33,7 @@ input {
   margin-bottom: 2px;
 }
 
-.character-count {
+.character-count, .char-count {
   color:#4E4E51;
   font: 400 15px 'Open Sans', sans-serif;
   margin-bottom: 20px;
