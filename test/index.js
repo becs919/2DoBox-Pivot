@@ -159,8 +159,6 @@ test.it('task should be marked completed when button is clicked', ()=>{
   task.sendKeys('this is a task');
   button.click();
 
-
-
   driver.findElement({className: 'completed-task'}).click();
 
   const completed = driver.findElement({className: 'todo-section'});
